@@ -1,0 +1,67 @@
+<div class="flex justify-end create">
+
+    <mat-form-field>
+        <mat-label><mat-icon color="">search</mat-icon> Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="search..." #input>
+    </mat-form-field>
+    <button routerLink="/create-branches" mat-raised-button color="primary" class="py-4">Add
+        Branch</button>
+</div>
+
+<div class="mat-elevation-z8 w-full custom-box">
+
+    <table mat-table [dataSource]="dataSource" class="" matSort>
+
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+        <ng-container matColumnDef="ref_code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Ref Code </th>
+            <td mat-cell *matCellDef="let element"> {{element.ref_code}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="bank_id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Bank Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.bank_id}} </td>
+        </ng-container>
+        <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+            <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+        </ng-container>
+        <ng-container matColumnDef="ifsc">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> IFSC </th>
+            <td mat-cell *matCellDef="let element"> {{element.ifsc}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="created_at">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> created_at </th>
+            <td mat-cell *matCellDef="let element"> {{element.created_at}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="updated_at">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> updated_at </th>
+            <td mat-cell *matCellDef="let element"> {{element.updated_at}} </td>
+        </ng-container>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element" class="action_btn">
+                <button mat-raised-button (click)="edit(element.id)"><mat-icon color="primary">edit</mat-icon></button>
+                <button mat-raised-button (click)="delete(element.id)"><mat-icon color="warn">delete</mat-icon></button>
+                <!-- <a (click)="edit(element.id)"><mat-icon color="red-100">edit</mat-icon></a>
+                <a (click)="delete(element.id)"><mat-icon color="warn">delete</mat-icon></a> -->
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

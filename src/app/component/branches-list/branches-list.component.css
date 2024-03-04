@@ -1,0 +1,30 @@
+.action_btn {
+    white-space: nowrap;
+
+}
+
+.action_btn button {
+    margin: 2px;
+    padding: 10px;
+}
+
+
+
+.custom-box {
+    background: linear-gradient(135deg, #d6d2c3 0%, #8c8887 100%);
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    /* Add your desired box shadow */
+
+}
+
+mat-form-field {
+    padding-right: 20px;
+    /* width: 100px; */
+    height: 75px;
+}
+
+.create button {
+
+    margin: 10px;
+}

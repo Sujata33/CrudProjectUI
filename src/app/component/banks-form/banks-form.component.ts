@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+
 import { HttpService } from '../../http.service';
 import { IBanks } from '../../interfaces/banks';
 import { ActivatedRoute, Router } from '@angular/router';
