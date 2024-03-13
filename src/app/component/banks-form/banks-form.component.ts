@@ -21,8 +21,8 @@ export class BanksFormComponent {
   route = inject(ActivatedRoute);
   banksForm = this.formBuilder.group({
     ref_code: ['', [Validators.required]],
-    name: ['', [Validators.required, Validators.pattern("[a-zA-Z].$")]],
-    short_name: ['', [Validators.required, Validators.pattern("[a-zA-Z].$")]]
+    name: ['', [Validators.required, Validators.pattern("[a-zA-Z].*")]],
+    short_name: ['', [Validators.required, Validators.pattern("[a-zA-Z].*")]]
   });
 
 
@@ -49,15 +49,16 @@ export class BanksFormComponent {
       ref_code: this.banksForm.value.ref_code!,
       name: this.banksForm.value.name!,
       short_name: this.banksForm.value.short_name!,
-
+      created_at: new Date(),
       updated_at: new Date(),
-      created_at: new Date()
+
     }
 
 
 
     if (this.isEdit) {
       if (this.banksForm.valid) {
+        banks.updated_at = new Date();
         this.httpService.updateBanks(this.banksId, banks).subscribe(() => {
           console.log("Success");
           this.router.navigateByUrl("/bank-list");
