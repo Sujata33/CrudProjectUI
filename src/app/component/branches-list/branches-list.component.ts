@@ -12,6 +12,11 @@ import { MatSort, MatSortModule } from '@angular/material/sort';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import autoTable from 'jspdf-autotable';
+
+
+import * as XLSX from 'xlsx';
+import jsPDF from 'jspdf';
 
 
 @Component({
@@ -55,6 +60,8 @@ export class BranchesListComponent {
 
 
 
+
+
   edit(id: number) {
     console.log(id);
     this.router.navigateByUrl("/branches/" + id);
@@ -76,6 +83,29 @@ export class BranchesListComponent {
       this.dataSource.paginator.firstPage();
     }
   }
+
+
+
+
+  fileName = "ExcelSheet.xlsx";
+  exportToExcel() {
+    let data = document.getElementById("table-data");
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(data)
+
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'sheet1')
+    XLSX.writeFile(wb, this.fileName)
+  }
+
+  makePDF() {
+    let pdf = new jsPDF()
+    autoTable(pdf, { html: "#table-data", theme: 'grid' })
+    pdf.save("sample.pdf");
+  };
+
+
 }
+
+
 
 
